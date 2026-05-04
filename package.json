@@ -1,0 +1,28 @@
+{
+  "name": "gold-ts",
+  "version": "0.0.1",
+  "description": "Minimal TypeScript full-stack framework with zero-config type-safe auto-generated clients",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "express": "^5.2.1",
+    "ts-morph": "^27.0.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsx": "^4.21.0"
+  },
+  "peerDependencies": {
+    "vite": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": { "optional": true }
+  }
+}
