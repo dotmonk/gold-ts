@@ -488,7 +488,7 @@ async function generateClient(
   ];
 
   for (const t of [...interfaces.values(), ...typeAliases.values()])
-    lines.push(`export ${t}\n`);
+    lines.push(`export ${t.replace(/^export\s+/, "")}\n`);
 
   lines.push(`export type ApiResponse<T> = Promise<T>;`);
   if (needsFormValue) {
@@ -550,11 +550,11 @@ export default async function gild(app: Express, options: GildOptions = {}) {
 
     for (const intf of sourceFile.getInterfaces()) {
       const name = intf.getName();
-      if (name) interfaces.set(name, intf.getFullText().trim());
+      if (name && intf.isExported()) interfaces.set(name, intf.getFullText().trim());
     }
     for (const ta of sourceFile.getTypeAliases()) {
       const name = ta.getName();
-      if (name) typeAliases.set(name, ta.getFullText().trim());
+      if (name && ta.isExported()) typeAliases.set(name, ta.getFullText().trim());
     }
 
     const namespaceName = filePathToNamespace(filePath);
